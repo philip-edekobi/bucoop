@@ -21,12 +21,6 @@ export async function memberCreate(details) {
 
     const user = await createMember(details);
 
-    await sendRegistrationEmail(
-      details.firstname + " " + details.lastname,
-      details.email,
-      memId,
-    );
-
     return user;
   } catch (err) {
     throw err;

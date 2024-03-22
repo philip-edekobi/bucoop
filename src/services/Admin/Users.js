@@ -24,8 +24,8 @@ export async function approveUser(id) {
     });
 
     await sendRegistrationEmail(
-      details.firstname + " " + details.lastname,
-      details.email,
+      user.firstname + " " + user.lastname,
+      user.email,
       user.memberId,
     );
 
