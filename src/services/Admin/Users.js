@@ -3,6 +3,7 @@ import {
   getMemberById,
   updateMemberByMemberId,
 } from "../../database/repositories/MemberRepo.js";
+import { sendRegistrationEmail } from "../../utils/email.js";
 
 export async function getAllUsers() {
   try {
@@ -21,6 +22,12 @@ export async function approveUser(id) {
     const mem = await updateMemberByMemberId(user.memberId, {
       registrationStatus: true,
     });
+
+    await sendRegistrationEmail(
+      details.firstname + " " + details.lastname,
+      details.email,
+      user.memberId,
+    );
 
     return mem;
   } catch (err) {

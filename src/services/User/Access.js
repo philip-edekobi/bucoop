@@ -9,7 +9,6 @@ import {
 } from "../../database/repositories/AdminRepo.js";
 import { hashPassword, comparePasswordWithHash } from "../../utils/password.js";
 import { generateMemberId } from "../../utils/uname.js";
-import { sendRegistrationEmail } from "../../utils/email.js";
 
 export async function memberCreate(details) {
   try {
@@ -54,12 +53,6 @@ export async function adminCreate(details) {
     details.adminId = memId;
 
     const admin = await createAdmin(details);
-
-    await sendRegistrationEmail(
-      details.firstname + " " + details.lastname,
-      details.email,
-      memId,
-    );
 
     return admin;
   } catch (err) {
