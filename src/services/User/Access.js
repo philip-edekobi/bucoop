@@ -56,7 +56,7 @@ export async function adminCreate(details) {
 
 export async function loginAdmin(details) {
   try {
-    const admin = await getAdminByAdminId(details.memberId);
+    const admin = await getAdminByAdminId(details.adminId);
 
     return comparePasswordWithHash(details.password, admin.passwordHash);
   } catch (err) {
